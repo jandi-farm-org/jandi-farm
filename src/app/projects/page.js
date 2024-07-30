@@ -1,5 +1,5 @@
 import Project from "@/components/project";
-import Todo from "@/components/todo";
+import TodoCard from "@/components/todoCard";
 
 export default function Home() {
   const projcets = [1, 2, 3, 4, 5, 6, 7];
@@ -12,7 +12,7 @@ export default function Home() {
       </div>
       <div className="border-4 border-gray-300 w-144 pl-12 overflow-y-scroll no-scrollbar">
         {projcets.map((n, idx) => (
-          <Todo key={idx} name={"test" + n} />
+          <TodoCard key={idx} id={n} />
         ))}
       </div>
     </>
