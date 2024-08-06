@@ -4,28 +4,13 @@ const TodoSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: [true, 'owner is required']
+    required: true
   },
-  title: {
-    type: Schema.Types.String,
-    required: [true, 'title is required!']
-  },
-  due_date: {
-    type: Schema.Types.Date,
-    required: [true, 'due_date is required!']
-  },
-  detail: {
-    type: Schema.Types.String,
-    required: [true, 'detail is required!']
-  },
+  title: { type: String, required: true },
+  due_date: { type: Date, required: true },
+  detail: { type: String, required: true },
   tags: {
-    type: [
-      {
-        type: Schema.Types.String,
-        required: [true, 'null tag is not allowed']
-      }
-    ],
-    default: [],
+    type: [{ type: String, required: true }],
     required: function() { return this.tags != undefined }
   },
   project: { // One-to-Squillions 부모(프로젝트) 참조
@@ -33,7 +18,7 @@ const TodoSchema = new Schema({
     ref: 'Project'
   },
   done: {
-    type: Schema.Types.Boolean,
+    type: Boolean,
     default: false,
     required: function() { return this.done != undefined }
   },

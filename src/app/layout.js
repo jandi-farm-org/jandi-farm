@@ -1,7 +1,7 @@
 import "./globals.css";
 import Navigation from "@/components/navigation";
 import Detail from "@/components/detail";
-import AuthProvider from "@/components/AuthProvider";
+import AuthProvider from "@/components/pcw/AuthProvider";
 
 export const metadata = {
   title: "잔디농장",
