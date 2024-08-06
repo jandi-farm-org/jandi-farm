@@ -2,10 +2,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 /* 로그인/인증 모듈 */
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 export default function Navigation() {
   /* 세션 정보(시작) */
@@ -22,7 +22,7 @@ export default function Navigation() {
     ["/", "홈"],
     ["/mypage", "마이페이지"],
     ["/todo", "일일 TODO"],
-    ["/projects", "프로젝트"],
+    ["/project", "프로젝트"],
   ];
 
   return (
@@ -40,7 +40,7 @@ export default function Navigation() {
         {session?.user ? (
           <>
             <button
-              type='button'
+              type="button"
               className="bg-slate-700 pl-1 pr-1 rounded-md outline outline-1 outline-white"
               onClick={signOut}
             >
@@ -61,7 +61,7 @@ export default function Navigation() {
         ) : (
           <>
             <button
-              type='button'
+              type="button"
               className="bg-slate-300 text-black pl-1 pr-1 rounded-md outline outline-1 outline-black"
               onClick={signIn}
             >

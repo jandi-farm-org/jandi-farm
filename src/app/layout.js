@@ -15,12 +15,7 @@ export default function RootLayout({ children }) {
         <div className="flex flex-col h-screen">
           <AuthProvider>
             <Navigation />
-            <div className="flex flex-1 overflow-hidden">
-              <main className="flex-1 flex justify-center border-4 border-indigo-400">
-                {children}
-              </main>
-              <Detail />
-            </div>
+            {children}
           </AuthProvider>
         </div>
       </body>

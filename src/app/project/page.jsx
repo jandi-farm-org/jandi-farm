@@ -1,20 +1,80 @@
-import Project from "@/components/project";
-import Todo from "@/components/todo";
+"use client";
 
-export default function Home() {
-  const projcets = [1, 2, 3, 4, 5, 6, 7];
+import ProjectCard from "@/components/projectCard";
+import Detail from "@/components/detail";
+import { useState, useEffect } from "react";
+
+// TODO
+// 나중에 projects DB에서 받아오게 수정
+
+const getProjects = async () => {
+  return [
+    {
+      _id: "abcd",
+      owner: "1234",
+      title: "토이 프로젝트",
+      due_date: "2024-08-31T00:00:00.000Z",
+      detail: "성균관대 여름방학 토이 프로젝트",
+    },
+    {
+      _id: "efgh",
+      owner: "1234",
+      title: "정보보호개론",
+      due_date: "2024-08-31T00:00:00.000Z",
+      detail: "3-2 수업 김형식 교수님 정보보호개론",
+    },
+    {
+      _id: "ijkl",
+      owner: "1234",
+      title: "다이어트",
+      due_date: "2024-08-31T00:00:00.000Z",
+      detail: "다이어트",
+    },
+  ];
+};
+
+export default function ProjcetPage() {
+  const [projects, setProjects] = useState([]);
+  const [todos, setTodos] = useState([]);
+  const [detail, setDetail] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getProjects();
+        setProjects(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <>
-      <div className="border-4 border-gray-300 w-144 pr-12 overflow-y-scroll no-scrollbar">
-        {projcets.map((n, idx) => (
-          <Project key={idx} name={"test" + n} />
-        ))}
-      </div>
-      <div className="border-4 border-gray-300 w-144 pl-12 overflow-y-scroll no-scrollbar">
-        {projcets.map((n, idx) => (
-          <Todo key={idx} name={"test" + n} />
-        ))}
-      </div>
-    </>
+    <div className="flex flex-1 overflow-hidden">
+      <main className="flex-1 flex justify-center">
+        <div className="flex justify-between w-full">
+          <div className="flex flex-col h-full w-140 gap-4 p-4 overflow-y-auto shrink-0 no-scrollbar">
+            {projects.map((data, idx) => (
+              <ProjectCard key={idx} data={data} />
+            ))}
+          </div>
+          <div className="w-full flex justify-center">
+            <div className="border-4">
+              <div className="flex justify-center items-center w-144 m-4">
+                <span>2024.07.30</span>
+              </div>
+              <div>
+                <ul className="divide-y divide-gray-200 px-4">
+                    {/* todo list map해서 집어넣기 */}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Detail />
+    </div>
   );
 }
