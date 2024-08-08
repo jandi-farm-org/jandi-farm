@@ -8,14 +8,30 @@ import TodoCard from "@/components/todoCard";
 export default function TodoPage() {
   const testData = [1, 2, 3, 4, 5];
 
+  const [date, setDate] = useState("");
+  const [detail, setDetail] = useState([]);
+
   return (
     <div className="flex flex-1 overflow-hidden">
       <main className="flex-1 flex justify-center">
         <div className="flex justify-between w-full">
-          <div className="flex flex-col h-full w-140 gap-4 p-4 overflow-y-auto shrink-0 no-scrollbar">
-            <ProjectCard data={"debug"} />
-            <ProjectCard data={"debug"} />
+          {/* 요일/날짜 선택 */}
+          <div className="flex flex-col h-full w-140 p-4 shrink-0">
+            <div className="flex flex-row justify-between m-4">
+              <button>prev</button>
+              <div>2024.08.30</div>
+              <button>next</button>
+            </div>
+            <div className="flex flex-col h-full w-full gap-4 overflow-y-auto shrink-0 no-scrollbar">
+              {date.map((data, idx) => (
+                <WeeklyCard key={idx} week={data[0]} date={data[1]} />
+              ))}
+            </div>
           </div>
+          {/* <div className="flex flex-col h-full w-140 gap-4 p-4 overflow-y-auto shrink-0 no-scrollbar">
+            <ProjectCard data={"debug"} />
+            <ProjectCard data={"debug"} />
+          </div> */}
           <div className="w-full flex justify-center">
             <div className="border-4">
               <div className="flex justify-center items-center w-144 m-4">
@@ -35,6 +51,29 @@ export default function TodoPage() {
         </div>
       </main>
       <Detail />
+    </div>
+  );
+}
+
+const date = [
+  ["월", "20240805"],
+  ["화", "20240806"],
+  ["수", "20240807"],
+  ["목", "20240808"],
+  ["금", "20240809"],
+  ["토", "20240810"],
+  ["일", "20240811"],
+];
+function WeeklyCard({ week, date }) {
+  return (
+    <div className="w-96 h-24 flex flex-col shrink-0 p-4 justify-between align-items border-2 shadow-lg">
+      <div className="w-full flex justify-between">
+        <span className="font-bold text-2xl">{week}</span>
+        <span>진행도</span>
+      </div>
+      <div className="w-full">
+        <div>{date}</div>
+      </div>
     </div>
   );
 }

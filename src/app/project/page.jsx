@@ -4,35 +4,7 @@ import ProjectCard from "@/components/projectCard";
 import Detail from "@/components/detail";
 import { useState, useEffect } from "react";
 import DateContainer from "@/components/dateContainer";
-
-// TODO
-// 나중에 projects DB에서 받아오게 수정
-
-const getProjects = async () => {
-  return [
-    {
-      _id: "abcd",
-      owner: "1234",
-      title: "토이 프로젝트",
-      due_date: "2024-08-31T00:00:00.000Z",
-      detail: "성균관대 여름방학 토이 프로젝트",
-    },
-    {
-      _id: "efgh",
-      owner: "1234",
-      title: "정보보호개론",
-      due_date: "2024-08-31T00:00:00.000Z",
-      detail: "3-2 수업 김형식 교수님 정보보호개론",
-    },
-    {
-      _id: "ijkl",
-      owner: "1234",
-      title: "다이어트",
-      due_date: "2024-08-31T00:00:00.000Z",
-      detail: "다이어트",
-    },
-  ];
-};
+import { getProjects } from "@/components/testGet";
 
 export default function ProjcetPage() {
   const [projects, setProjects] = useState([]);
@@ -42,7 +14,7 @@ export default function ProjcetPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getProjects();
+        const result = await getProjects("test");
         setProjects(result);
       } catch (error) {
         console.error("Error fetching data:", error);
