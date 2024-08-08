@@ -3,6 +3,7 @@
 import ProjectCard from "@/components/projectCard";
 import Detail from "@/components/detail";
 import { useState, useEffect } from "react";
+import DateContainer from "@/components/dateContainer";
 
 // TODO
 // 나중에 projects DB에서 받아오게 수정
@@ -61,15 +62,13 @@ export default function ProjcetPage() {
             ))}
           </div>
           <div className="w-full flex justify-center">
-            <div className="border-4">
-              <div className="flex justify-center items-center w-144 m-4">
-                <span>2024.07.30</span>
-              </div>
-              <div>
-                <ul className="divide-y divide-gray-200 px-4">
-                    {/* todo list map해서 집어넣기 */}
-                </ul>
-              </div>
+            <div className="flex flex-col gap-8 overflow-y-auto no-scrollbar">
+              <DateContainer date={"2024-08-31"} events={[1, 2, 3]} />
+              <ArrowDown size={48} color="blue" />
+              <DateContainer date={"2024-08-31"} events={[1, 2, 3]} />
+              <ArrowDown size={48} color="blue" />
+
+              <DateContainer date={"2024-08-31"} events={[1, 2, 3]} />
             </div>
           </div>
         </div>
@@ -78,3 +77,17 @@ export default function ProjcetPage() {
     </div>
   );
 }
+
+const ArrowDown = ({ size = 24, color = "black" }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M12 16L8 12H11V8H13V12H16L12 16Z" fill={color} />
+    </svg>
+  );
+};

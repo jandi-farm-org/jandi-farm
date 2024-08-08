@@ -23,7 +23,7 @@ const SmallBox = ({ title, content }) => (
 // 2. 데이터 프롭으로 받아오기
 export default function Detail() {
   return (
-    <div className="w-96 flex flex-col h-full">
+    <div className="w-96 flex flex-col h-full border-2">
       <BigBox title="TODO" content="일정 1" />
       <BigBox title="Due" content="2024.07.31" />
       <BigBox title="Category" content="#유산소" />
